@@ -1,5 +1,5 @@
 """
-WSGI config for TODO_NOTES project.
+WSGI config for todo_notes project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'TODO_NOTES.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'todo_notes.settings')
 
 application = get_wsgi_application()

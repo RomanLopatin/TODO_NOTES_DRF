@@ -1,0 +1,26 @@
+[
+    {
+        "username": "django",
+        "first_name": "admin",
+        "last_name": "admin",
+        "email": "admin@admin.admin",
+        "password": "geekbrains",
+        "is_superuser": true
+    },
+    {
+        "username": "test_user",
+        "first_name": "test",
+        "last_name": "test",
+        "email": "test@test.test",
+        "password": "",
+        "is_superuser": false
+    },
+    {
+        "username": "test_user_2",
+        "first_name": "test_2",
+        "last_name": "test_2",
+        "email": "test2@test.test",
+        "password": "",
+        "is_superuser": false
+    }
+]
