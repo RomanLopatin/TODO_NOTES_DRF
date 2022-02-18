@@ -16,9 +16,7 @@ class Command(BaseCommand):
         AppUser.objects.all().delete()
         for user in _users:
             if user.get('is_superuser'):
-                print(1, user.get('username'),  type(user.get('is_superuser')))
                 AppUser.objects.create_superuser(**user)
             else:
-                print(2, user.get('username'), type(user.get('is_superuser')))
                 AppUser.objects.create_user(**user)
 
