@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.viewsets import ModelViewSet
 
-from .filters import ProjectFilter
+from .filters import ProjectFilter, TaskFilter
 from .models import Project, Note
 from .serializers import ProjectModelSerializer, NoteModelSerializer
 
@@ -31,7 +31,8 @@ class NoteViewSet(ModelViewSet):
     serializer_class = NoteModelSerializer
     queryset = Note.objects.all()
     pagination_class = TaskLimitOffsetPagination
-    filterset_fields = ['project']
+    # filterset_fields = ['project']
+    filterset_class = TaskFilter
 
     def perform_destroy(self, instance):
         instance.is_active = False
