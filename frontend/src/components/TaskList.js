@@ -10,6 +10,9 @@ const TaskItem = ({task}) => {
            <td>
                {task.noteText}
            </td>
+           <td>
+               {task.isActive}
+           </td>
        </tr>
    )
 }
@@ -22,6 +25,9 @@ const TaskList = ({tasks}) => {
            </th>
            <th>
                Note text
+           </th>
+           <th>
+               Is active
            </th>
            {tasks.map((task) => <TaskItem task={task} />)}
        </table>
