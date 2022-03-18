@@ -23,14 +23,14 @@ class ProjectViewSet(ModelViewSet):
 
     serializer_class = ProjectModelSerializer
     queryset = Project.objects.all()
-    pagination_class = ProjectLimitOffsetPagination
+    # pagination_class = ProjectLimitOffsetPagination
     filterset_class = ProjectFilter
 
 
 class NoteViewSet(ModelViewSet):
     serializer_class = NoteModelSerializer
     queryset = Note.objects.all()
-    pagination_class = TaskLimitOffsetPagination
+    # pagination_class = TaskLimitOffsetPagination
     # filterset_fields = ['project']
     filterset_class = TaskFilter
 

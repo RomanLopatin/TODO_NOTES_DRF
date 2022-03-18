@@ -6,12 +6,12 @@ from .models import AppUser
 
 
 # Create your views here.
-# class AppUserViewSet(ModelViewSet):
-#     serializer_class = AppUserModelSerializer
-#     queryset = AppUser.objects.all()
-
-class AppUserViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
-    renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+class AppUserViewSet(ModelViewSet):
     serializer_class = AppUserModelSerializer
     queryset = AppUser.objects.all()
+
+# class AppUserViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
+#     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
+#     serializer_class = AppUserModelSerializer
+#     queryset = AppUser.objects.all()
 

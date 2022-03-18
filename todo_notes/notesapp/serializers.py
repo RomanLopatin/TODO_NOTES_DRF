@@ -4,8 +4,8 @@ from notesapp.models import Project, Note
 from usersapp.serializers import AppUserModelSerializer
 
 
-# class ProjectModelSerializer(ModelSerializer):
-class ProjectModelSerializer(HyperlinkedModelSerializer):
+# class ProjectModelSerializer(HyperlinkedModelSerializer):
+class ProjectModelSerializer(ModelSerializer):
     # users = AppUserModelSerializer(many=True)
 
     class Meta:
@@ -13,9 +13,8 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-# class NoteModelSerializer(ModelSerializer):
-class NoteModelSerializer(HyperlinkedModelSerializer):
-
+# class NoteModelSerializer(HyperlinkedModelSerializer):
+class NoteModelSerializer(ModelSerializer):
     class Meta:
         model = Note
         fields = '__all__'

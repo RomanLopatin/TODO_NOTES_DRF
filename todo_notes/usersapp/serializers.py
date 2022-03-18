@@ -3,8 +3,8 @@ from rest_framework.serializers import HyperlinkedModelSerializer, ModelSerializ
 from .models import AppUser
 
 
-# class AppUserModelSerializer(ModelSerializer):
-class AppUserModelSerializer(HyperlinkedModelSerializer):
+# class AppUserModelSerializer(HyperlinkedModelSerializer):
+class AppUserModelSerializer(ModelSerializer):
     class Meta:
         model = AppUser
         fields = (
