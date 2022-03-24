@@ -1,7 +1,7 @@
 from rest_framework.serializers import ModelSerializer, HyperlinkedModelSerializer
 
 from notesapp.models import Project, Note
-from usersapp.serializers import AppUserModelSerializer
+# from usersapp.serializers import AppUserModelSerializer
 
 
 # class ProjectModelSerializer(HyperlinkedModelSerializer):

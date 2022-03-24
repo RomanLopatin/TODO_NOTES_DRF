@@ -14,4 +14,3 @@ class AppUserViewSet(ModelViewSet):
 #     renderer_classes = [JSONRenderer, BrowsableAPIRenderer]
 #     serializer_class = AppUserModelSerializer
 #     queryset = AppUser.objects.all()
-
