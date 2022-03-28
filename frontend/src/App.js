@@ -20,6 +20,7 @@ class App extends React.Component{
             projects:[],
             tasks:[],
             token: '',
+            username: 'annon',
         }
     }
 
@@ -29,9 +30,11 @@ class App extends React.Component{
 
     logout() {
         localStorage.setItem('token', '')
+        localStorage.setItem('username', '')
         this.setState(
             {
                 'token': '',
+                'username': 'annon',
                 users:[],
                 projects:[],
                 tasks:[],
@@ -57,9 +60,11 @@ class App extends React.Component{
                 const token = response.data.token
                 console.log(token)
                 localStorage.setItem('token', token)
+                localStorage.setItem('username', username)
                 this.setState(
                     {
-                        'token': token
+                        'token': token,
+                        'username': username
                     }, this.getData)
             })
             .catch(error => alert('Неверный логин или пароль'))
@@ -106,9 +111,11 @@ class App extends React.Component{
 
     componentDidMount() {
         let token = localStorage.getItem('token')
+        let username = localStorage.getItem('username')
         this.setState(
             {
-                'token': token
+                'token': token,
+                'username': username
             }, this.getData
         )
     }
@@ -116,11 +123,10 @@ class App extends React.Component{
     render () {
         return(
             <BrowserRouter>
+                    <div>User: {this.state.username}</div>
+                    {this.is_authenticated() ? <button onClick={()=>this.logout()}>Logout</button> : <a href="/login">Login</a>}
                     <nav>
                         <ul>
-                            <li>
-                                {this.is_authenticated() ? <button onClick={()=>this.logout()}>Logout</button> : <Link to='/login'>Login</Link>}
-                            </li>
                             <li><Link to='/users'>Users</Link></li>
                             <li><Link to='/projects'>Projects</Link></li>
                             <li><Link to='/tasks'>Tasks</Link></li>
