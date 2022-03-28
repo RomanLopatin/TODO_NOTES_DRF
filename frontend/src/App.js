@@ -20,7 +20,7 @@ class App extends React.Component{
             projects:[],
             tasks:[],
             token: '',
-            username: 'annon',
+            username: '',
         }
     }
 
@@ -34,7 +34,7 @@ class App extends React.Component{
         this.setState(
             {
                 'token': '',
-                'username': 'annon',
+                'username': '',
                 users:[],
                 projects:[],
                 tasks:[],
