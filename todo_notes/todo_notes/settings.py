@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django_filters',
     'rest_framework',
     'rest_framework.authtoken',
+    'todo_notes',
     'usersapp',
     'notesapp',
     'rest_framework_simplejwt',
