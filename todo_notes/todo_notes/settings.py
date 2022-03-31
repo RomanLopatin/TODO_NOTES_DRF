@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'usersapp',
     'notesapp',
     'rest_framework_simplejwt',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -151,9 +152,13 @@ REST_FRAMEWORK = {
         'djangorestframework_camel_case.render.CamelCaseBrowsableAPIRenderer',
         # Any other renders
     ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissions'
-    ],
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    #     'rest_framework.permissions.DjangoModelPermissions'
+    # ],
+
+    # http://127.0.0.1:8000/api/authors/?version=2.0
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.QueryParameterVersioning',
+
     'DEFAULT_PARSER_CLASSES': (
         # If you use MultiPartFormParser or FormParser, we also have a camel case version
         'djangorestframework_camel_case.parser.CamelCaseFormParser',

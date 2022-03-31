@@ -13,3 +13,16 @@ class AppUserModelSerializer(ModelSerializer):
             'last_name',
             "email"
         )
+
+
+class AppUserModelSerializerV2(ModelSerializer):
+    class Meta:
+        model = AppUser
+        fields = (
+            'username',
+            'first_name',
+            'last_name',
+            "email",
+            "is_superuser",
+            "is_staff"
+        )
