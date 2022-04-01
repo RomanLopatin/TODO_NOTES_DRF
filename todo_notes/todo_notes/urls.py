@@ -11,6 +11,7 @@ from notesapp.views import ProjectViewSet, NoteViewSet
 from usersapp.views import AppUserViewSet
 
 from drf_yasg.views import get_schema_view
+from rest_framework.schemas import get_schema_view as get_schema_view_drf
 from drf_yasg import openapi
 
 router = DefaultRouter()
@@ -39,6 +40,8 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('swagger/', schema_view.with_ui()),
     re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
+    path('openapi', get_schema_view_drf(title="Your Project", description="API for all things …", version="1.0.0"),
+         name='openapi-schema'),
     path('redoc/',
          TemplateView.as_view(template_name='todo_notes/redoc.html', extra_context={'schema_url': 'openapi-schema'}
                               ),
