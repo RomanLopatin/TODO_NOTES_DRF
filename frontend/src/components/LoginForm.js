@@ -15,12 +15,10 @@ class LoginForm extends React.Component{
         );
     }
 
-
     handleSubmit(event) {
         this.props.getToken(this.state.login, this.state.password)
         event.preventDefault()
     }
-
 
     render() {
         return (
@@ -31,7 +29,6 @@ class LoginForm extends React.Component{
             </form>
         )
     }
-
 }
 
 export default LoginForm;

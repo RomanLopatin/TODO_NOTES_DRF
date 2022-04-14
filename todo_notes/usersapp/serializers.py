@@ -8,6 +8,7 @@ class AppUserModelSerializer(ModelSerializer):
     class Meta:
         model = AppUser
         fields = (
+            'id',
             'username',
             'first_name',
             'last_name',
