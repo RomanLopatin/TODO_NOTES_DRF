@@ -23,6 +23,7 @@ class App extends React.Component{
             tasks:[],
             token: '',
             username: '',
+            project_filter: '',
         }
     }
 
@@ -38,6 +39,7 @@ class App extends React.Component{
                 'token': '',
                 'username': '',
                 users:[],
+                projects_from_server:[],
                 projects:[],
                 tasks:[],
             }, this.getData
@@ -55,7 +57,6 @@ class App extends React.Component{
     }
 
     getToken(username, password) {
-        console.log(username, password)
         axios
             .post('http://127.0.0.1:8000/api-auth-token/', {username: username, password: password})
             .then(response => {
@@ -71,7 +72,7 @@ class App extends React.Component{
             .catch(error => alert('Неверный логин или пароль'))
     }
 
-     getData() {
+    getData() {
 
          let headers = this.getHeaders()
 
@@ -92,7 +93,8 @@ class App extends React.Component{
                 const projects = response.data
                 this.setState(
                     {
-                        'projects': projects
+                        'projects': projects,
+                        'projects_from_server': projects
                     }
                 )
             })
@@ -131,7 +133,7 @@ class App extends React.Component{
             .catch (error => console.log(error))
      }
 
-   newProject(name, repo_link, users) {
+    newProject(name, repo_link, users) {
         let headers = this.getHeaders()
         axios
             .post('http://127.0.0.1:8000/api/projects/', {'name': name, 'repo_link': repo_link,'users': users}, {headers})
@@ -148,25 +150,38 @@ class App extends React.Component{
             .then (response => {
                 this.setState(
                     {
-                        'tasks': this.state.tasks.filter((task)=>task.id !=id)
+                        'tasks': this.state.tasks.filter((task)=>task.id !==id)
                     })
             })
             .catch (error => console.log(error))
-
     }
 
-     deleteProject(id) {
+    deleteProject(id) {
         let headers = this.getHeaders()
         axios
             .delete(`http://127.0.0.1:8000/api/projects/${id}`, {headers})
             .then (response => {
                 this.setState(
                     {
-                        'projects': this.state.projects.filter((project)=>project.id !=id)
+                        'projects': this.state.projects.filter((project)=>project.id !==id)
                     })
             })
             .catch (error => console.log(error))
 
+    }
+
+    setProjectFilter(filterInput){
+        this.setState(
+            {
+                'project_filter': filterInput
+            })
+    }
+
+    filterProjects(filterInput){
+        this.setState(
+            {
+                'projects': this.state.projects_from_server.filter((project)=>project.name.toLowerCase().includes(filterInput.toLowerCase()))
+            })
     }
 
     render () {
@@ -187,7 +202,14 @@ class App extends React.Component{
                         <Route exact path = '/' element = {<Navigate to='/users'/>}/>
                         <Route exact path = '/login' element = {<LoginForm getToken={(username, password) => this.getToken(username, password)}/>}/>
                         <Route exact path = '/users' element = {<UserList users={this.state.users} />}/>
-                        <Route exact path = '/projects' element = {<ProjectList projects={this.state.projects} deleteProject={(id) => this.deleteProject(id)}  />} />
+                        <Route exact path = '/projects'
+                            element = {<ProjectList
+                                projects={this.state.projects}
+                                filterInput={this.state.project_filter}
+                                deleteProject={(id) => this.deleteProject(id)}
+                                setProjectFilter={(filterInput) => this.setProjectFilter(filterInput)}
+                                filterProjects={(filterInput) => this.filterProjects(filterInput)}  />} />
+                            }
                         <Route path = '/projects/project/:id' element = {<ProjectTaskList tasks={this.state.tasks}/>} />
                         <Route exact path = '/tasks' element = {<TaskList tasks={this.state.tasks} deleteTask={(id) => this.deleteTask(id)} />} />
                         <Route exact path = '/tasks/create' element = {<TaskForm projects={this.state.projects} users={this.state.users} newTask={(note_text, project, user) => this.newTask(note_text, project, user)}/>}/>

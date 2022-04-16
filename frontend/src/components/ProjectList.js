@@ -18,17 +18,26 @@ const ProjectItem = ({project, deleteProject}) => {
    )
 }
 
-const ProjectList = ({projects, deleteProject}) => {
+const ProjectList = ({projects, filterInput, deleteProject, setProjectFilter, filterProjects}) => {
    return (
-       <table>
-           <th>
-               Name
-           </th>
-           <th>
-               Users
-           </th>
-           {projects.map((project) => <ProjectItem project={project} deleteProject={deleteProject} />)}
-       </table>
+       <div>
+           <input
+               type="text"
+               name="project_filter"
+               placeholder="project filter"
+               onChange={(event)=>{setProjectFilter(event.target.value)}}
+           />
+           <button onClick={()=>filterProjects(filterInput)}>Filter</button>
+           <table>
+               <th>
+                   Name
+               </th>
+               <th>
+                   Users
+               </th>
+               {projects.map((project) => <ProjectItem project={project} deleteProject={deleteProject} />)}
+           </table>
+       </div>
    )
 }
 
