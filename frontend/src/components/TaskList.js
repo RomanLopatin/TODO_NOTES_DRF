@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const TaskItem = ({task}) => {
+const TaskItem = ({task, deleteTask}) => {
    return (
        <tr>
            <td>
@@ -13,11 +13,14 @@ const TaskItem = ({task}) => {
            <td>
                {task.isActive}
            </td>
+           <td>
+               <button onClick={()=>deleteTask(task.id)}>Delete</button>
+           </td>
        </tr>
    )
 }
 
-const TaskList = ({tasks}) => {
+const TaskList = ({tasks, deleteTask}) => {
    return (
        <table>
            <th>
@@ -29,7 +32,7 @@ const TaskList = ({tasks}) => {
            <th>
                Is active
            </th>
-           {tasks.map((task) => <TaskItem task={task} />)}
+           {tasks.map((task) => <TaskItem task={task} deleteTask={deleteTask} />)}
        </table>
    )
 }
